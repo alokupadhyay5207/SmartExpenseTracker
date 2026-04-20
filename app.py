@@ -10,14 +10,17 @@ import random
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 
+
+from dotenv import load_dotenv
+load_dotenv()
+
 app = Flask(__name__)
-app.secret_key = "change_this_to_a_strong_secret_key"
+app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key")
 DATABASE = "expense_tracker.db"
 
 # ---------------- EMAIL CONFIG ----------------
-SENDER_EMAIL = "alokupadhyay497@gmail.com"
-SENDER_PASSWORD = "ylrw gepn cxaw yzte"
-# ---------------------------------------------
+SENDER_EMAIL = os.environ.get("SENDER_EMAIL")
+SENDER_PASSWORD = os.environ.get("SENDER_PASSWORD")
 
 
 def get_db_connection():
